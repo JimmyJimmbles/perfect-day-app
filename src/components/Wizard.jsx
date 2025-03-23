@@ -3,25 +3,20 @@ import FinalResult from "./FinalResult";
 import { motion, AnimatePresence } from "framer-motion";
 import { QUESTIONS } from "../data/questions";
 
-// A utility to check if there's a saved itinerary
 function getSavedItinerary() {
   const saved = localStorage.getItem("finalItinerary");
-  if (saved) {
-    return JSON.parse(saved);
-  }
-  return null;
+  return saved ? JSON.parse(saved) : null;
 }
 
-const Wizard = () => {
+const Wizard = ({ onRestartApp }) => {
   const [currentStep, setCurrentStep] = useState(0);
   const [answers, setAnswers] = useState({});
   const [finalItinerary, setFinalItinerary] = useState(null);
 
   useEffect(() => {
-    // On mount, check localStorage
     const saved = getSavedItinerary();
     if (saved) {
-      // If we have a saved itinerary, set it so we skip the wizard
+      // If we have a saved itinerary, skip the wizard
       setFinalItinerary(saved);
     }
   }, []);
@@ -36,25 +31,26 @@ const Wizard = () => {
   const goBack = () => setCurrentStep((prev) => prev - 1);
 
   const restartWizard = () => {
+    // Wipe everything
     setCurrentStep(0);
     setAnswers({});
-    setFinalItinerary(null); // clear final itinerary
-    localStorage.removeItem("finalItinerary"); // wipe local storage
+    setFinalItinerary(null);
+    localStorage.removeItem("finalItinerary");
+
+    // Also tell the App to show the Start Screen
+    onRestartApp();
   };
 
-  // If we have a final itinerary saved in state, skip the wizard
   if (finalItinerary) {
-    return (
-      <FinalResult existingItinerary={finalItinerary} onRestart={restartWizard} />
-    );
+    return <FinalResult existingItinerary={finalItinerary} onRestart={restartWizard} />;
   }
 
-  // If we've answered all questions, show FinalResult (which sets localStorage)
   if (currentStep >= totalSteps) {
+    // All questions answered; show final result
     return <FinalResult answers={answers} onRestart={restartWizard} />;
   }
 
-  // ... otherwise show the wizard UI
+  // ... Wizard UI ...
   const { id, questionText, options } = QUESTIONS[currentStep];
   const progressPercent = ((currentStep + 1) / totalSteps) * 100;
 
@@ -77,12 +73,10 @@ const Wizard = () => {
             exit={{ opacity: 0, x: -50 }}
             transition={{ duration: 0.25 }}
           >
-            {/* Question Text */}
             <h2 className="text-xl font-semibold text-white mb-4">
               {questionText}
             </h2>
 
-            {/* Options List */}
             <div className="space-y-3">
               {options.map((opt) => {
                 const isSelected = answers[id] === opt.value;
@@ -109,7 +103,6 @@ const Wizard = () => {
               })}
             </div>
 
-            {/* Navigation Buttons */}
             <div className="mt-8">
               {currentStep > 0 ? (
                 <button
@@ -121,7 +114,7 @@ const Wizard = () => {
               ) : (
                 <button
                   disabled
-                  className="w-full sm:w-auto inline-block bg-indigo-600 hover:bg-indigo-700 text-white font-medium rounded-md px-6 py-2"
+                  className="w-full sm:w-auto inline-block bg-indigo-600 hover:bg-indigo-700 text-white font-medium rounded-md px-6 py-2 opacity-75 cursor-not-allowed"
                 >
                   Let’s Plan Your Day!
                 </button>

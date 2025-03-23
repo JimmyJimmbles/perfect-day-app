@@ -30,13 +30,13 @@ export const foodSpots = {
   
   export const vibeActivities = {
     chill: [
-      "Finding some rad ass spots to just kick back and chill maybe a lil bar or coffee shop",
+      "Finding some rad ass spots to just kick back and chill maybe a lil bar or coffee shop. Enojoying the day, taking it easy, seeing the sights and sounds.",
     ],
     moderate: [
-      "Stroll up and down South Congress//Downtown, see the 'Before I Die' mural, maybe pop into Jo's Coffee for a midday beer",
+      "Moderate stroll up and down Downtown//South Congress, see the 'Before I Die' mural, maybe pop into Jo's Coffee for a midday beer//coffee//tea",
     ],
     adventure: [
-      "Rent scooters and zip around the Capitol, or kayak on Lady Bird Lake!",
+      "Geochaching, renting scooters, walking the late, swimming, all of the above. Dealers choice!",
     ],
     flow: null,
   };
