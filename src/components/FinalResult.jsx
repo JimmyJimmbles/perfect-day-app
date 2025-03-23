@@ -62,7 +62,7 @@ const FinalResult = ({ answers, existingItinerary, onRestart }) => {
       <div className="mt-6 text-center">
         <button
           onClick={onRestart}
-          className="inline-block w-full sm:w-auto bg-indigo-600 hover:bg-indigo-700 text-white font-medium rounded-md px-6 py-2"
+          className="inline-block w-full sm:w-auto bg-indigo-600 hover:bg-indigo-700 text-white font-medium rounded-md px-6 py-2 block w-full"
         >
           Restart
         </button>
