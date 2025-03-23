@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/perfect-day-app/static/css/main.2fc7026b.css",
+    "main.js": "/perfect-day-app/static/js/main.b607916a.js",
+    "static/js/453.bde7e847.chunk.js": "/perfect-day-app/static/js/453.bde7e847.chunk.js",
+    "index.html": "/perfect-day-app/index.html",
+    "main.2fc7026b.css.map": "/perfect-day-app/static/css/main.2fc7026b.css.map",
+    "main.b607916a.js.map": "/perfect-day-app/static/js/main.b607916a.js.map",
+    "453.bde7e847.chunk.js.map": "/perfect-day-app/static/js/453.bde7e847.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.2fc7026b.css",
+    "static/js/main.b607916a.js"
+  ]
+}
